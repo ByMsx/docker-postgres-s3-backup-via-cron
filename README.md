@@ -2,8 +2,7 @@
 
 This image dumps your postgres databases every hour (OR custom cron defined in `BACKUP_CRON_SCHEDULE`),
 compresses the dump using bz2 and uploads it to an
-amazon S3 bucket. Backups older than 30 days (OR days defined in `AWS_KEEP_FOR_DAYS`) are
-deleted automatically.
+amazon S3 bucket. 
 It also have a `BACKUP_PRIORITY` params for set the backup priority with ionice and nice values.
 
 Configure the backup source and s3 target with these environment
@@ -32,7 +31,7 @@ or [docker compose](https://docs.docker.com/compose/), put this in your
 
 ```yaml
 fitty-postgres-backup:
-  image: 'leen15/postgres-s3-backup-via-cron'
+  image: 'bymsx/postgres-s3-backup-via-cron'
   environment:
     - AWS_ACCESS_KEY_ID=<access key>
     - AWS_BUCKET_NAME=<your s3 bucket name>
@@ -54,6 +53,9 @@ fitty-postgres-backup:
 The `links` section is optional, of course, just make sure you update the
 `PGHOST` environment variable accordingly.
 
+## Remove old backups
+
+You can use AWS rule, which described [here](https://lepczynski.it/en/aws_en/automatically-delete-old-files-from-aws-s3/).
 
 ## Thanks
 

@@ -20,5 +20,5 @@ echo "`date` Compressing dump"
 $BACKUP_PRIORITY bzip2 /tmp/backup.sql.dump
 
 echo "`date` Uploading to S3"
-/backup/s3upload.rb
+/backup/upload.sh
 echo "`date` Done!"
